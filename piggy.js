@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const channel = client.channels.cache.get("843550410299801611");
+const token = require("./token");
+const channel = client.channels.cache.get(token.channelcache);
 const exampleEmbed = new Discord.MessageEmbed()
   .setColor("#0099ff")
   .setTitle("Some title")
@@ -36,4 +37,4 @@ client.on("message", (msg) => {
   }
 });
 
-client.login("ODQzNDk5NDgwMjA0NTc0NzYx.YKEwGw.7vNWM1eeZlNzs7x0IifyLxBESdo");
+client.login(token.token);
