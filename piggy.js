@@ -6,6 +6,7 @@ const channel = bot.channels.cache.get(token.channelcache);
 //import own modules
 const images = require("./images");
 const imagLenght = Object.keys(images).length;
+const fortuna = require("./fortuna");
 
 const piggyframe =
   "https://static.wixstatic.com/media/6ddbfe_4b7e2879e94b45c89fceb47627f59369~mv2.jpeg/v1/fill/w_524,h_453,al_c,q_90/6ddbfe_4b7e2879e94b45c89fceb47627f59369~mv2.jpeg";
@@ -62,20 +63,25 @@ bot.on("message", (msg) => {
         .addFields(
           {
             name: "!comandos",
-            value: "lista de comandos",
+            value: "Lista de comandos",
             inline: false,
           },
-          { name: "!gif", value: "piggy te envia amor", inline: false },
+          { name: "!gif", value: "Piggy te envia amor", inline: false },
           {
             name: "!chao piggy",
-            value: "avisar a piggy de que te vas a dormir",
+            value: "Avisar a piggy de que te vas a dormir",
             inline: false,
           },
-          { name: "!twitch", value: "enlace a twitch", inline: false },
-          { name: "!youtube", value: "enlace a youtube", inline: false },
+          { name: "!twitch", value: "Enlace a twitch", inline: false },
+          { name: "!youtube", value: "Enlace a youtube", inline: false },
           {
             name: "!rush",
-            value: "empieza a recolectar cheerios para piggy",
+            value: "Empieza a recolectar cheerios para piggy",
+            inline: false,
+          },
+          {
+            name: "!fortuna",
+            value: "Pide a los dioses una galleta",
             inline: false,
           }
         );
@@ -89,7 +95,18 @@ bot.on("message", (msg) => {
         .setFooter("you can request another cute pig-gif");
       msg.channel.send({ embed: picEmbed });
       break;
+    case "fortuna":
+      let luckyEmbed = new Discord.MessageEmbed()
+        .setColor("#b92c4f")
+        .setTitle("Esta es tu fortuna")
+        .setImage(
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpkJwaVVemepX-08boehU1SE4h7wZcrTsbiMb9qIZgVHJnkEQDDgLPA8dqwLW17YrDLMo&usqp=CAU"
+        )
+        .setDescription(`${fortuna[Math.floor(Math.random() * 28)]}`);
 
+      msg.channel.send({ embed: luckyEmbed });
+
+      break;
     case "chao piggy":
       msg.channel.send(`oink oink! ${cry} ${cry}`);
       break;
